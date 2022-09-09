@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To do list</title>
+    
+    <link rel="stylesheet" href="front-awesome.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style media="screen">
+        *{
+            margin: 0%; padding: 0%;
+            box-sizing: border-box;
+            letter-spacing: 0.5px;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            text-transform: capitalize;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(45deg, yellow 50%, grey 50%);
+        }
+
+        .container {
+            height: 450px;
+            width: 330px;
+            background: whitesmoke;
+            border-radius: 5px;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            overflow-y: auto;
+        }
+
+        #input {
+            height: 50px;
+            width: 100%;
+            outline: none;
+            border: none;
+            border-radius: 5px;
+            background: grey;
+            color: rgb(255, 255, 255);
+            padding:0 10px;
+            margin: 15px 0;
+        }
+
+        #input::placeholder {
+            color: rgb(197, 196, 196);
+        }
+
+        li {
+            background: rgb(169, 240, 169);
+            color: slateblue;
+            height: 40px;
+            border-radius: 50px;
+            margin: 10px 0;
+            padding: 10px;
+            position: relative;
+        }
+
+        .fa-check, .fa-trash {
+            position: absolute;
+            cursor: pointer;
+        }
+
+        .fa-check {
+            right: 40px;
+            color: rgb(0, 186, 0);
+        }
+
+        .fa-trash {
+            right: 20px;
+            color: rgb(242, 58, 58);
+        }
+
+        .checked {
+            background-color: rgb(34, 213, 34);
+            text-decoration: line-through;
+            transition: 0.5s;
+            color: black;
+        }
+
+    </style>
+
+    <script src="jquery.js" charset="utf-8"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <input type="text" id="input" placeholder="Press Enter to add task">
+        <ul></ul>
+    </div>
+
+    <script type="text/javascript">
+
+        $(document).ready(function() {
+            $('#input').change(function() {
+                var input = $(this).val();
+                $('ul').append('<li>' + input + '<i class="fa fa-check"></i> <i class="fa fa-trash"></i> </li>');
+                $(this).val('');
+            });
+        });
+
+        $('ul').on('click','.fa-trash', function() {
+            $(this).parent('li').fadeOut(400);
+        });
+
+        $('ul').on('click','.fa-check', function() {
+            $(this).parent('li').toggleClass('checked');
+        });
+
+    </script>
+
+
+</body>
+</html>
